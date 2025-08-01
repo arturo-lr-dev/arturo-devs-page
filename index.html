@@ -66,13 +66,25 @@
 
         /* Scroll-snap y scroll-driven animations */
         html {
-            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
         
-        section {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
+        /* Scroll snap solo en desktop */
+        @media (min-width: 768px) and (hover: hover) {
+            html {
+                scroll-snap-type: y proximity;
+            }
+            
+            section {
+                scroll-snap-align: start;
+            }
+        }
+        
+        /* En móviles, scroll más suave sin snap obligatorio */
+        @media (max-width: 767px) or (hover: none) {
+            html {
+                scroll-snap-type: none;
+            }
         }
         
         /* Scroll-driven animations usando @scroll-timeline */
@@ -137,13 +149,25 @@
             .scroll-progress {
                 animation: progress-animation linear;
                 animation-timeline: scroll(root);
+                animation-range: 0% 100%;
                 transform: scaleX(0);
             }
             
             @keyframes progress-animation {
+                from {
+                    transform: scaleX(0);
+                }
                 to {
                     transform: scaleX(1);
                 }
+            }
+        }
+        
+        /* Fallback para navegadores sin soporte de scroll-timeline */
+        @supports not (animation-timeline: scroll()) {
+            .scroll-progress {
+                transform: scaleX(0);
+                transition: transform 0.1s ease-out;
             }
         }
 
@@ -512,6 +536,7 @@
         setupMobileMenu();
         setupCursorFollower(); 
         setupNavHighlighting();
+        setupScrollProgress();
         
         // Ocultar preloader cuando la página esté lista
         window.onload = () => {
@@ -791,6 +816,23 @@
         });
 
         sections.forEach(section => observer.observe(section));
+    }
+
+    function setupScrollProgress() {
+        // Solo añadir funcionalidad de fallback si no hay soporte para scroll-timeline
+        if (!CSS.supports('animation-timeline: scroll()')) {
+            const progressBar = document.querySelector('.scroll-progress');
+            
+            function updateScrollProgress() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = scrollTop / docHeight;
+                
+                progressBar.style.transform = `scaleX(${Math.min(scrollPercent, 1)})`;
+            }
+            
+            window.addEventListener('scroll', updateScrollProgress, { passive: true });
+        }
     }
 
     </script>
