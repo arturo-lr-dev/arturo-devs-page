@@ -272,6 +272,136 @@
             transform: translateY(-20px);
             transition-delay: 0s;
         }
+
+        /* Animaciones elegantes para botones */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform, box-shadow;
+        }
+
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease-in-out;
+        }
+
+        .btn-animated:hover::before {
+            left: 100%;
+        }
+
+        /* Animación continua de brillo suave para móviles */
+        @media (hover: none) or (pointer: coarse) {
+            .btn-animated {
+                animation: mobileButtonGlow 3s ease-in-out infinite;
+            }
+
+            .btn-animated::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, 
+                    transparent 30%, 
+                    rgba(255, 255, 255, 0.1) 50%, 
+                    transparent 70%);
+                transform: translateX(-100%);
+                animation: shimmer 2s ease-in-out infinite;
+            }
+
+            @keyframes mobileButtonGlow {
+                0%, 100% {
+                    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3),
+                                0 0 10px rgba(59, 130, 246, 0.2),
+                                0 0 15px rgba(59, 130, 246, 0.1);
+                }
+                50% {
+                    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                                0 0 20px rgba(59, 130, 246, 0.3),
+                                0 0 30px rgba(59, 130, 246, 0.2);
+                }
+            }
+
+            @keyframes shimmer {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+        }
+
+        /* Efectos para desktop (hover) */
+        @media (hover: hover) and (pointer: fine) {
+            .btn-animated:hover {
+                transform: translateY(-2px) scale(1.02);
+                box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4),
+                            0 5px 15px rgba(59, 130, 246, 0.3);
+            }
+
+            .btn-animated:active {
+                transform: translateY(0) scale(0.98);
+                transition-duration: 0.1s;
+            }
+        }
+
+        /* Efectos específicos para botones de gradiente */
+        .btn-gradient-animated {
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animación de pulso suave para el botón de contacto */
+        .btn-pulse {
+            animation: gentlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Animación de flotación para botones */
+        @media (hover: none) or (pointer: coarse) {
+            .btn-float {
+                animation: float 3s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-3px);
+                }
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -567,11 +697,12 @@
         
         // Hero Buttons
         const heroButtonsContainer = document.getElementById('hero-buttons');
-        heroButtons.forEach(btn => {
+        heroButtons.forEach((btn, index) => {
             const btnClass = btn.primary 
-                ? 'bg-gradient-primary text-white' 
+                ? 'bg-gradient-primary text-white btn-gradient-animated' 
                 : 'bg-gray-700 hover:bg-gray-600 text-white';
-            heroButtonsContainer.innerHTML += `<a href="${btn.href}" class="${btnClass} font-semibold py-3 px-6 rounded-full transition-transform duration-300 hover:scale-105 inline-block w-full sm:w-auto text-center" ${btn.text.includes('CV') ? 'download' : ''}>${btn.text}</a>`;
+            const animationClass = index === 0 ? 'btn-animated btn-float' : 'btn-animated';
+            heroButtonsContainer.innerHTML += `<a href="${btn.href}" class="${btnClass} ${animationClass} font-semibold py-3 px-6 rounded-full transition-transform duration-300 hover:scale-105 inline-block w-full sm:w-auto text-center" ${btn.text.includes('CV') ? 'download' : ''}>${btn.text}</a>`;
         });
 
         // About
@@ -652,6 +783,7 @@
         const contactButton = document.getElementById('contact-button');
         contactButton.textContent = contact.buttonText;
         contactButton.href = `mailto:${personalInfo.email}`;
+        contactButton.classList.add('btn-animated', 'btn-pulse', 'btn-gradient-animated');
 
         // Footer
         document.getElementById('footer-text').textContent = footer.text.replace('Tu Nombre', personalInfo.name);
