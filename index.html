@@ -533,7 +533,7 @@
     const portfolioData = {
     "personalInfo": {
         "name": "Arturo",
-        "logo": "ALR",
+        "logo": "logo.png",
         "titles": ["Prompter", "Tech Lead", "Manager", "Arquitecto"],
         "description": "Tech Lead con más de 10 años de experiencia en el sector tecnológico, especializado en arquitectura de software, gestión de equipos y soluciones digitales para el sector bancario. Experto en Java, Spring Framework y metodologías ágiles.",
         "profileImage": "https://placehold.co/600x600/1e293b/ffffff?text=Arturo+Legaspi",
@@ -695,7 +695,12 @@
 
         // Personal Info & Navigation
         document.title = `${personalInfo.name} | Portfolio`;
-        document.getElementById('logo-container').textContent = personalInfo.logo;
+        const logoContainer = document.getElementById('logo-container');
+        if (personalInfo.logo.endsWith('.png') || personalInfo.logo.endsWith('.jpg') || personalInfo.logo.endsWith('.jpeg') || personalInfo.logo.endsWith('.svg')) {
+            logoContainer.innerHTML = `<img src="${personalInfo.logo}" alt="Logo" class="h-8 w-auto">`;
+        } else {
+            logoContainer.textContent = personalInfo.logo;
+        }
         document.getElementById('hero-name').textContent = personalInfo.name;
         document.getElementById('hero-subtitle-prefix').textContent = "Soy";
         document.getElementById('hero-description').textContent = personalInfo.description;
