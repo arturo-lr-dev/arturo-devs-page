@@ -13,12 +13,12 @@ export const metadata: Metadata = {
   description: "Descubre el portfolio de Arturo Legaspi, Tech Lead con más de 10 años de experiencia en arquitectura de software y gestión de equipos.",
   openGraph: {
     type: "website",
-    url: "https://arturo-devs-page.vercel.app/",
+    url: "https://legasint.com",
     title: "Portfolio Personal de Arturo Legaspi",
     description: "Descubre el portfolio de Arturo Legaspi, Tech Lead con más de 10 años de experiencia en arquitectura de software y gestión de equipos.",
     images: [
       {
-        url: "https://arturo-devs-page.vercel.app/og-image.png",
+        url: "/og-image-min.png",
         width: 1200,
         height: 630,
         alt: "Portfolio de Arturo Legaspi",
