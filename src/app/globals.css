@@ -581,9 +581,11 @@ html {
 .btn-outlined-gradient {
   position: relative;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6, #14b8a6);
+  background-size: 200% 200%;
   padding: 2px;
   border-radius: 9999px;
   border: none;
+  animation: gradientShift 4s ease infinite;
 }
 
 .btn-outlined-gradient::before {
@@ -593,4 +595,33 @@ html {
   background: #0a0a0a;
   border-radius: 9999px;
   z-index: -1;
+  transition: background 0.3s ease;
+}
+
+/* Efectos hover para el botón outlined */
+@media (hover: hover) and (pointer: fine) {
+  .btn-outlined-gradient:hover::before {
+    background: rgba(10, 10, 10, 0.95);
+  }
+  
+  .btn-outlined-gradient:hover {
+    background-size: 150% 150%;
+    animation-duration: 2s;
+  }
+}
+
+/* Animaciones para móviles */
+@media (hover: none) or (pointer: coarse) {
+  .btn-outlined-gradient {
+    animation: gradientShift 3s ease infinite, mobileOutlineGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes mobileOutlineGlow {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4));
+    }
+  }
 }
