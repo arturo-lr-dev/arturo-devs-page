@@ -113,7 +113,7 @@ export const portfolioData = {
     "buttonText": "Conversemos"
   },
   "footer": {
-    "text": `© ${new Date().getFullYear()} Arturo Legaspi Rodrigo. Todos los derechos reservados.`,
+    "text": `© ${new Date().getFullYear()} Arturo from LegaSint. vibecoded with love`,
     "socials": [
       { 
         "name": "LinkedIn", 
