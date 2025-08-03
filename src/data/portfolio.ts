@@ -113,7 +113,7 @@ export const portfolioData = {
     "buttonText": "Conversemos"
   },
   "footer": {
-    "text": `© ${new Date().getFullYear()} Arturo from LegaSint. vibecoded with love`,
+    "text": `© ${new Date().getFullYear()} Arturo from LegaSint. vibecoded with love.`,
     "socials": [
       { 
         "name": "LinkedIn", 
@@ -130,10 +130,12 @@ export const portfolioData = {
         "url": "mailto:arturo@legasint.com", 
         "icon": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>` 
       },
-      { 
-        "name": "Phone", 
-        "url": "tel:+34649355701", 
-        "icon": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008-.034-1.336.004-1.336.004l-3.467 1.732c-1.717-.345-3.109-1.02-4.18-2.091-1.071-1.072-1.747-2.463-2.091-4.18l1.733-3.467s.037-1.328.004-1.336l-6.795-3.521c-.198-.096-.434-.049-.578.115-.12.135-.249.283-.249.283-.434.439-.722.916-.722 1.727 0 7.904 6.423 14.324 14.324 14.324.811 0 1.288-.288 1.727-.722 0 0 .148-.129.283-.249.164-.144.211-.38.115-.578z"/></svg>` 
+      {
+        "name": "Phone",
+        "url": "tel:+34649355701",
+        "icon": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>`
       }
     ]
   }
