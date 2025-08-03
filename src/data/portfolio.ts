@@ -5,7 +5,7 @@ export const portfolioData = {
     "titles": ["Prompter", "Tech Lead", "Manager", "Arquitecto"],
     "description": "<span class='highlight-blue'>Tech Lead</span> con más de <span class='highlight-teal'>10 años</span> de experiencia en el sector tecnológico, especializado en <span class='highlight-purple'>arquitectura de software</span>, <span class='highlight-indigo'>gestión de equipos</span> y soluciones digitales para el sector bancario. Experto en <span class='highlight-blue'>Java</span>, <span class='highlight-teal'>Spring Framework</span> y <span class='highlight-purple'>metodologías ágiles</span>.",
     "profileImage": "/me.webp",
-    "email": "artuleg@gmail.com"
+    "email": "arturo@legasint.com"
   },
   "navigation": [
     { "name": "Inicio", "href": "#home" },

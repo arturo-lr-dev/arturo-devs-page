@@ -68,39 +68,38 @@ export default function Header() {
           </div>
           
           <button
-            onClick={toggleMobileMenu}
-            className="md:hidden text-white focus:outline-none"
-            aria-label="Toggle mobile menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" // This attribute is redundant if aria-expanded is present
-            >
-              <path
-                className={`${
- isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
- } transition-opacity duration-300`}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7" // Original hamburger icon paths
-              />
-              <path
-                className={`${
- isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
- } transition-opacity duration-300`}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12" // Cross icon paths
-              />
-            </svg>
-          </button>
+  onClick={toggleMobileMenu}
+  className="md:hidden text-white focus:outline-none"
+  aria-label="Toggle mobile menu"
+  aria-expanded={isMobileMenuOpen}
+>
+  <div className="w-6 h-6 relative flex items-center justify-center">
+    {/* Línea superior */}
+    <span
+      className={`absolute h-0.5 w-6 bg-current transform transition-all duration-300 ease-in-out origin-center ${
+        isMobileMenuOpen 
+          ? 'rotate-45' 
+          : 'rotate-0 -translate-y-2'
+      }`}
+    />
+    
+    {/* Línea del medio */}
+    <span
+      className={`absolute h-0.5 w-6 bg-current transition-all duration-300 ease-in-out ${
+        isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+      }`}
+    />
+    
+    {/* Línea inferior - más pequeña como en el original */}
+    <span
+      className={`absolute h-0.5 bg-current transform transition-all duration-300 ease-in-out origin-center ${
+        isMobileMenuOpen 
+          ? '-rotate-45 w-6' 
+          : 'rotate-0 translate-y-2 w-4 translate-x-1'
+      }`}
+    />
+  </div>
+</button>
         </nav>
       </header>
 
