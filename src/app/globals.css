@@ -1,0 +1,448 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #e5e7eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  background-color: #0a0a0a;
+  color: #e5e7eb;
+}
+
+/* Ocultar cursor por defecto solo en desktop */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button {
+    cursor: none;
+  }
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-primary {
+  background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.bg-gradient-secondary {
+  background-image: linear-gradient(to right, #14b8a6, #3b82f6);
+}
+
+/* Animaciones de entrada */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación de cursor parpadeante para el texto dinámico */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background-color: #3b82f6;
+  animation: blink 0.7s infinite;
+  margin-left: 4px;
+  position: relative;
+  top: 0.1em;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Scroll-snap y scroll-driven animations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll snap solo en desktop */
+@media (min-width: 768px) and (hover: hover) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  
+  section {
+    scroll-snap-align: start;
+  }
+}
+
+/* En móviles, scroll más suave sin snap obligatorio */
+@media (max-width: 767px) or (hover: none) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+/* Scroll-driven animations usando @scroll-timeline */
+@supports (animation-timeline: scroll()) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    animation: revealOnScroll linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+  
+  @keyframes revealOnScroll {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .scroll-fade {
+    opacity: 1;
+    animation: fadeOnScroll linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+  
+  @keyframes fadeOnScroll {
+    to {
+      opacity: 0.3;
+      transform: scale(0.98);
+    }
+  }
+}
+
+/* Fallback para navegadores sin soporte */
+@supports not (animation-timeline: scroll()) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+               transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Indicador de progreso de scroll */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  transform-origin: 0% 50%;
+  z-index: 9999;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress-animation linear;
+    animation-timeline: scroll(root);
+    animation-range: 0% 100%;
+    transform: scaleX(0);
+  }
+  
+  @keyframes progress-animation {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Fallback para navegadores sin soporte de scroll-timeline */
+@supports not (animation-timeline: scroll()) {
+  .scroll-progress {
+    transform: scaleX(0);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* Estilo para la barra de scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Cursor personalizado - Solo en desktop */
+@media (hover: hover) and (pointer: fine) {
+  #cursor-dot, #cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: all 0.15s ease-out;
+  }
+  #cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #3b82f6;
+  }
+  #cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #3b82f6;
+  }
+}
+
+/* Ocultar cursor personalizado en dispositivos táctiles */
+@media (hover: none) or (pointer: coarse) {
+  #cursor-dot, #cursor-outline {
+    display: none;
+  }
+}
+
+/* Estilos para el cursor al hacer hover - Solo en desktop */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-grow {
+    transform: translate(-50%, -50%) scale(8);
+    background-color: #fff;
+    mix-blend-mode: difference;
+  }
+  .cursor-outline-hidden {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Estilo para el link de navegación activo */
+#nav-links a.active-nav, #mobile-menu a.active-nav {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+/* Animación de burbuja para el menú móvil */
+#mobile-menu {
+  clip-path: circle(0% at 90% 10%);
+  transition: clip-path 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+#mobile-menu.menu-open {
+  clip-path: circle(150% at 90% 10%);
+}
+
+#mobile-menu.menu-closing {
+  clip-path: circle(0% at 90% 10%);
+}
+
+/* Animaciones para los enlaces del menú móvil */
+#mobile-menu a {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#mobile-menu.menu-open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#mobile-menu.menu-open a:nth-child(1) { transition-delay: 0.1s; }
+#mobile-menu.menu-open a:nth-child(2) { transition-delay: 0.15s; }
+#mobile-menu.menu-open a:nth-child(3) { transition-delay: 0.2s; }
+#mobile-menu.menu-open a:nth-child(4) { transition-delay: 0.25s; }
+#mobile-menu.menu-open a:nth-child(5) { transition-delay: 0.3s; }
+#mobile-menu.menu-open a:nth-child(6) { transition-delay: 0.35s; }
+
+#mobile-menu.menu-closing a {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition-delay: 0s;
+}
+
+/* Animaciones elegantes para botones */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, box-shadow;
+}
+
+.btn-animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease-in-out;
+}
+
+.btn-animated:hover::before {
+  left: 100%;
+}
+
+/* Animación continua de brillo suave para móviles */
+@media (hover: none) or (pointer: coarse) {
+  .btn-animated {
+    animation: mobileButtonGlow 3s ease-in-out infinite;
+  }
+
+  .btn-animated::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 70%);
+    transform: translateX(-100%);
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes mobileButtonGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3),
+                  0 0 10px rgba(59, 130, 246, 0.2),
+                  0 0 15px rgba(59, 130, 246, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                  0 0 20px rgba(59, 130, 246, 0.3),
+                  0 0 30px rgba(59, 130, 246, 0.2);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Efectos para desktop (hover) */
+@media (hover: hover) and (pointer: fine) {
+  .btn-animated:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4),
+                0 5px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-animated:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+  }
+}
+
+/* Efectos específicos para botones de gradiente */
+.btn-gradient-animated {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animación de pulso suave para el botón de contacto */
+.btn-pulse {
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Animación de flotación para botones */
+@media (hover: none) or (pointer: coarse) {
+  .btn-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+/* Estilos de texto destacados minimalistas */
+.highlight-blue {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.highlight-teal {
+  color: #14b8a6;
+  font-weight: 600;
+}
+
+.highlight-purple {
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.highlight-gray {
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.highlight-indigo {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.highlight-slate {
+  color: #64748b;
+  font-weight: 600;
+}
