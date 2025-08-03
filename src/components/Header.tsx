@@ -70,6 +70,8 @@ export default function Header() {
           <button
             onClick={toggleMobileMenu}
             className="md:hidden text-white focus:outline-none"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <svg
               className="w-6 h-6"
@@ -77,6 +79,7 @@ export default function Header() {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

@@ -17,6 +17,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
+              aria-label={`Visit ${social.name} profile`}
               dangerouslySetInnerHTML={{ __html: social.icon }}
             />
           ))}
