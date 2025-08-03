@@ -36,14 +36,18 @@ export default function HeroSection() {
               href={button.href}
               className={`${
                 button.primary
-                  ? 'bg-gradient-primary text-white btn-gradient-animated'
-                  : 'bg-gray-700 hover:bg-gray-600 text-white'
+                  ? 'bg-gradient-primary text-white btn-gradient-animated py-3 px-6'
+                  : 'text-white btn-outlined-gradient'
               } ${
                 index === 0 ? 'btn-animated btn-float' : 'btn-animated'
-              } font-semibold py-3 px-6 rounded-full transition-transform duration-300 hover:scale-105 inline-block w-full sm:w-auto text-center`}
+              } font-semibold rounded-full transition-all duration-300 hover:scale-105 inline-block w-full sm:w-auto text-center relative`}
               {...(button.text.includes('CV') ? { download: true } : {})}
             >
-              {button.text}
+              {button.primary ? button.text : (
+                <span className="relative z-10 py-3 px-6 block">
+                  {button.text}
+                </span>
+              )}
             </a>
           ))}
         </div>
