@@ -15,7 +15,7 @@ export default function PortfolioSection() {
         {portfolio.projects.map((project, index) => (
           <div
             key={index}
-            className="bg-gray-900 rounded-lg overflow-hidden group scroll-reveal transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 btn-animated relative"
+            className="bg-gray-900 rounded-lg overflow-hidden group scroll-reveal transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 portfolio-card-shine relative"
           >
             <Image
               src={project.image}
