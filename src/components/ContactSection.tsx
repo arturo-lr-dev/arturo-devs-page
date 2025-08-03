@@ -11,7 +11,7 @@ export default function ContactSection() {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 scroll-reveal">
           {contact.title}
         </h2>
-        <p className="text-gray-400 mb-8 scroll-reveal">
+        <p className="text-gray-200 mb-8 scroll-reveal">
           {contact.description}
         </p>
         <div className="scroll-reveal">

@@ -60,7 +60,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-300 hover:text-white transition-colors duration-300"
+                className="text-gray-200 hover:text-white transition-colors duration-300"
               >
                 {item.name}
               </a>

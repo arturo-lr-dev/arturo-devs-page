@@ -25,7 +25,7 @@ export default function HeroSection() {
         </h1>
         
         <div
-          className="mt-6 text-lg md:text-xl max-w-3xl text-gray-400 scroll-reveal"
+          className="mt-6 text-lg md:text-xl max-w-3xl text-gray-200 scroll-reveal"
           dangerouslySetInnerHTML={{ __html: personalInfo.description }}
         />
         

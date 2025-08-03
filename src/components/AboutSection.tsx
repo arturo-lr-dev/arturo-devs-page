@@ -23,7 +23,7 @@ export default function AboutSection() {
             {about.title}
           </h2>
           <div
-            className="text-gray-300 leading-relaxed"
+            className="text-gray-200 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: about.description }}
           />
         </div>

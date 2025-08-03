@@ -33,7 +33,7 @@ export default function ExperienceSection() {
                 `}
               >
                 <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 p-6 rounded-lg shadow-lg inline-block w-full text-left">
-                  <time className="mb-1 text-sm font-normal leading-none text-gray-400">
+                  <time className="mb-1 text-sm font-normal leading-none text-gray-200">
                     {job.period}
                   </time>
                   <h3 className="text-lg font-semibold text-white">
@@ -43,7 +43,7 @@ export default function ExperienceSection() {
                     {job.company}
                   </h4>
                   <div
-                    className="text-base font-normal text-gray-400"
+                    className="text-base font-normal text-gray-200"
                     dangerouslySetInnerHTML={{ __html: job.description }}
                   />
                 </div>
