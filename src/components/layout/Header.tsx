@@ -79,13 +79,25 @@ export default function Header() {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
+              aria-hidden="true" // This attribute is redundant if aria-expanded is present
             >
               <path
+                className={`${
+ isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+ } transition-opacity duration-300`}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
+                d="M4 6h16M4 12h16m-7 6h7" // Original hamburger icon paths
+              />
+              <path
+                className={`${
+ isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+ } transition-opacity duration-300`}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12" // Cross icon paths
               />
             </svg>
           </button>
@@ -95,16 +107,19 @@ export default function Header() {
       {/* Menú Móvil */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 bg-black bg-opacity-95 z-30 md:hidden flex-col items-center justify-center space-y-8 text-2xl ${
-          isMobileMenuOpen ? 'flex menu-open' : 'hidden'
+        className={`fixed inset-0 bg-black bg-opacity-95 z-30 flex md:hidden flex-col items-center justify-center space-y-8 text-2xl transition-opacity duration-300 ease-in-out ${
+          isMobileMenuOpen
+            ? 'opacity-100 pointer-events-auto menu-open'
+            : 'opacity-0 pointer-events-none'
         }`}
       >
-        {navigation.map((item) => (
+        {navigation.map((item, index) => (
           <a
             key={item.href}
             href={item.href}
             onClick={closeMobileMenu}
             className="block py-2"
+            style={{ transitionDelay: `${index * 0.1}s` }}
           >
             {item.name}
           </a>
