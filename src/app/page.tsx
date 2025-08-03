@@ -3,17 +3,16 @@
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
 import { useNavHighlighting } from '@/hooks/useNavHighlighting';
 
-import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
-import SkillsSection from '@/components/SkillsSection';
-import ExperienceSection from '@/components/ExperienceSection';
-import PortfolioSection from '@/components/PortfolioSection';
-import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
-import Preloader from '@/components/Preloader';
-import CursorFollower from '@/components/CursorFollower';
-import ScrollProgress from '@/components/ScrollProgress';
+import { Header, Footer } from '@/components/layout';
+import {
+  HeroSection,
+  AboutSection,
+  SkillsSection,
+  ExperienceSection,
+  PortfolioSection,
+  ContactSection,
+} from '@/components/sections';
+import { Preloader, CursorFollower, ScrollProgress } from '@/components/ui';
 
 export default function Home() {
   useScrollAnimations();
