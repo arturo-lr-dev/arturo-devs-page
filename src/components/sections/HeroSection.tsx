@@ -8,7 +8,7 @@ export default function HeroSection() {
   const typingText = useTypingAnimation(personalInfo.titles);
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 md:pt-0">
+    <section id="home" className="min-h-screen flex items-center justify-center py-20 md:py-0">
       <div className="w-full">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
           Hola, soy{' '}
