@@ -30,9 +30,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-black bg-opacity-70 backdrop-blur-sm shadow-lg'
+            ? 'bg-opacity-70 backdrop-blur-md shadow-lg'
             : ''
         }`}
       >

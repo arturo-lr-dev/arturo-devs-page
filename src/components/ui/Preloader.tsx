@@ -20,7 +20,7 @@ export default function Preloader() {
   if (!isVisible) return null;
 
   return (
-    <div className={`fixed inset-0 bg-[#0a0a0a] z-50 flex items-center justify-center transition-all duration-800 ease-out ${
+    <div className={`fixed inset-0 bg-[#0a0a0a] z-[100] flex items-center justify-center transition-all duration-800 ease-out ${
       isExiting ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
     }`}>
       <div className="relative">
