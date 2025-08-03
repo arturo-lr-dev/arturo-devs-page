@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="border-t border-gray-800">
       <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <p className="text-gray-200 mb-4 md:mb-0 flex items-center justify-center md:justify-start">
-          Vibecoded con
+          Vibecoded with
           <span className="heart-beat-icon mx-1.5">
             <svg
               className="w-5 h-5 text-red-500"
@@ -24,7 +24,6 @@ export default function Footer() {
               ></path>
             </svg>
           </span>
-          por {personalInfo.name} © {new Date().getFullYear()}
         </p>
         <div className="flex space-x-6">
           {footer.socials.map((social, index) => (
